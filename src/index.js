@@ -113,14 +113,15 @@ class KeyvMssql extends EventEmitter {
   }
 
   async delete(key) {
-    let doesKeyExist = await this.get(key);
-    if (doesKeyExist === undefined) return false;
     const client = this.sql(this.opts.table);
+    // Check if key exists directly in database (don't use this.get() to avoid infinite loop)
     const exists = await client
       .where({
         key: key
       })
-      .select("*");
+      .select("*")
+      .first();
+    
     if (exists) {
       return await client
         .where({

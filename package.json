@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/pmorgan3/keyv-mssql",
   "dependencies": {
+    "dotenv": "^17.2.1",
     "EventEmitter": "^1.0.0",
     "global": "^4.4.0",
     "knex": "^2.5.1",
